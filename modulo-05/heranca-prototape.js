@@ -5,39 +5,34 @@ let Automovel = function (modelo , ano) {  // CONSTRUTOR
     let privado = undefined ;   // PROPRIEDADE PRIVADA
     this.modelo =  modelo ;  // PROPRIEDADE PUBLICA
     this.ano =  ano ;
-    this.get_infor = function () {
-        console.log( this.modelo , this.ano );
-    }
+
 } ;
-
-let Automovel_licenciados = function ( placa , autorizacao ) {
-    Automovel.apply( this. arguments ); // forma de passar parametos de Carro para o construtor pai Automovel
-
+Automovel.prototype.get_infor = function () {
+    console.log( this.modelo , this.ano );
 }
 
-
-let Carro = function (modelo , ano , portas) {
+let Carro = function ( modelo , ano, placa  ) {
     Automovel.apply(this , arguments); // forma de passar parametos de Carro para o construtor pai Automovel
-
-    this.portas = portas ;
+    this.placa = placa ;
     this.get_infor = function () {
-        console.log( ` ${this.modelo} ${this.ano} ${this.portas}` )
+        console.log( ` ${this.modelo} ${this.ano} `)
     }
 } ;
-Carro.prototype = new Automovel() ;
 
+Carro.prototype.get_infor_completas = function () {
+    console.log( this.modelo , this.ano );
 
+};
 
-
-
-
+let uno = new Carro( 'uno mile' , 2006 , 'kbg1025'  ) ;
 let jato = new Automovel( '----F15----' , 1995 );
-console.log( jato.modelo );
-console.log( jato.ano );
+
+uno.get_infor();
+uno.get_infor_completas();
+
 jato.get_infor();
 
-let uno = new Carro('uno_mile' , 2006 , 4 ) ;
-uno.get_infor() ;
+
 
 
 
