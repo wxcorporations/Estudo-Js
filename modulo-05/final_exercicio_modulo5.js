@@ -13,9 +13,12 @@
 // retorna valor para uma variavel
 
 let Board_game = function ( nome_jogador ) {
-    this.round = 0 ;
-    this.score = 0 ;
+    let round = 0 ;
+    let score = 0 ;
+
     this.nome_jogador = nome_jogador ;
+    this.incremento_score = function () { score++ } ;
+    this.incremento_round = function () { round++ } ;
     this.get_score = function () {
         let value_score = score ;
         return value_score ;
@@ -27,7 +30,7 @@ let Board_game = function ( nome_jogador ) {
 };
 
 Board_game.prototype.proximo_round = function () {
-    this.round++ ;
+    this.incremento_round()
 };
 
 Board_game.prototype.update_board = function ( id_score, id_round, id_player ) {
@@ -44,8 +47,15 @@ Board_game.prototype.fim_jogo = function ( value ) {
 };
 
 Board_game.prototype.add_score = function () {
-    this.score++ ;
+    this.incremento_score() ;
 } ;
+
+
+let board_quiz = new Board_game('fernando') ;
+
+console.log( board_quiz.incremento_score() ) ;
+console.log( board_quiz.get_score() ) ;
+
 
 
 /*
