@@ -5,12 +5,10 @@ let Automovel = function (modelo , ano) {  // CONSTRUTOR
     let privado = undefined ;   // PROPRIEDADE PRIVADA
     this.modelo =  modelo ;  // PROPRIEDADE PUBLICA
     this.ano =  ano ;
-
 } ;
 Automovel.prototype.get_infor = function () {
     console.log( this.modelo , this.ano );
 }
-
 let Carro = function ( modelo , ano, placa  ) {
     Automovel.apply(this , arguments); // forma de passar parametos de Carro para o construtor pai Automovel
     this.placa = placa ;
@@ -18,7 +16,6 @@ let Carro = function ( modelo , ano, placa  ) {
         console.log( ` ${this.modelo} ${this.ano} `)
     }
 } ;
-
 Carro.prototype.get_infor_completas = function () {
     console.log( this.modelo , this.ano );
 
@@ -29,7 +26,6 @@ let jato = new Automovel( '----F15----' , 1995 );
 
 uno.get_infor();
 uno.get_infor_completas();
-
 jato.get_infor();
 
 
