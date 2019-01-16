@@ -6,6 +6,26 @@ Nos últimos 3 jogos, o time de John marcou 89, 120 e 123 pontos.
 /*
 1: Calcule a pontuação média de cada equipe
 */
+/*
+2: Decida quais equipes ganham em média (maior pontuação média)
+e imprima o vencedor para o console. Inclua também a pontuação
+média na saída.
+*/
+/*
+3: Em seguida, altere as pontuações para mostrar os vencedores
+diferentes. Não se esqueça de levar em conta que pode haver um
+empate (a mesma pontuação média)
+*/
+/*
+4: EXTRA: Mary também joga basquete e sua equipe tem 97, 134 e 105
+pontos. Como antes, registre o vencedor médio para tomar a decisão.
+ Se você não consegue resolver isso, apenas observe a solução, não
+ tem problema
+*/
+/*
+5: Como antes, altere as pontuações para gerar vencedores diferentes,
+tendo em mente que pode haver empates
+*/
 
 let Time = function( _nome ){
     let pontos = [];
@@ -29,8 +49,7 @@ function gerar_pontos (){
     return Math.floor( Math.random() * 100 ) ;
 }
 
-
-function init_campeonato ( _total_partidas , lista_participantes ) {
+function campeonato ( _total_partidas , lista_participantes ) {
     let time_jhon = new Time(),
         time_mark = new Time(),
         total_partidas = _total_partidas ,
@@ -44,14 +63,10 @@ function init_campeonato ( _total_partidas , lista_participantes ) {
     }
 
     campeao = lista_participantes.sort( function ( a , b ) {
-        let time1 = a.calcular_media_pontos(),
-            time2 = b.calcular_media_pontos();
-        return time1 < time2 ? a : b ;
-    })
+        return a.calcular_media_pontos() - b.calcular_media_pontos()
+    });
 
-    // console.dir( campeao )
-
-
+    console.log( `time campeao da rodada é` , campeao[ campeao.length -1 ].nome ) ;
 }
 
 let sao_paulo = new Time('sao_paulo') ;
@@ -60,32 +75,12 @@ let palmeiras = new Time('palmeiras');
 let times = [ sao_paulo , gremio, palmeiras ];
 
 
-init_campeonato( 5 , times) ;
-console.log('sao paulo',sao_paulo.calcular_media_pontos()) ;
-console.log('gremio' , gremio.calcular_media_pontos());
-console.log('palmeiras' , palmeiras.calcular_media_pontos());
+campeonato( 5 , times) ;
+// console.log('sao paulo',sao_paulo.calcular_media_pontos()) ;
+// console.log('gremio' , gremio.calcular_media_pontos());
+// console.log('palmeiras' , palmeiras.calcular_media_pontos());
 
 
 
 
 
-/*
-2: Decida quais equipes ganham em média (maior pontuação média)
-e imprima o vencedor para o console. Inclua também a pontuação
-média na saída.
-*/
-/*
-3: Em seguida, altere as pontuações para mostrar os vencedores
-diferentes. Não se esqueça de levar em conta que pode haver um
-empate (a mesma pontuação média)
-*/
-/*
-4: EXTRA: Mary também joga basquete e sua equipe tem 97, 134 e 105
-pontos. Como antes, registre o vencedor médio para tomar a decisão.
- Se você não consegue resolver isso, apenas observe a solução, não
- tem problema
-*/
-/*
-5: Como antes, altere as pontuações para gerar vencedores diferentes,
-tendo em mente que pode haver empates
-*/
