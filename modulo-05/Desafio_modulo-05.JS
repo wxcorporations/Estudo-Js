@@ -39,6 +39,40 @@ e não interfira no código do outro programador (dica: aprendemos uma técnica
 especial para fazer exatamente isso)
 */
 
+/*
+                        Nível de especialista
+----------------------------------------------------------------------------
+*/
+
+/*
+----------------------------------------------------------------------------
+8: depois de exibir o resultado, exibir a próxima pergunta aleatória,
+    para que o jogo nunca termine.
+*/
+
+// responsavel por pegar a entrada do navegador .
+// retorna valor para uma variavel
+
+/*
+----------------------------------------------------------------------------
+9: Tenha cuidado: depois da tarefa 8, o jogo literalmente nunca termina.
+  Então incluide a opção de sair do jogo se o usuário escrever 'exit'
+  ao invés da resposta. Neste caso, não chame a função da tarefa 8.
+*/
+
+/*
+----------------------------------------------------------------------------
+10: acompanhe a pontuação do usuário para tornar o jogo mais divertido!
+  então cada vez que uma resposta estiver correta, adicione 1 ponto à
+  partitura (dica: eu vou usar poder das closures para isso, mas você não
+  precisa, apenas faça isso com as ferramentas que você se sente mais
+  confortável neste momento ).
+*/
+
+/*----------------------------------------------------------------------------
+  11 : Exiba a pontuação no console use ainda outro método para esse
+*/
+
 var APP_QUIZ = (function() {
   let window = window ;
   let document = document ;
@@ -177,44 +211,3 @@ function main(){
 
 main();
 
-/*
-                        Nível de especialista
-----------------------------------------------------------------------------
-*/
-
-/*
-----------------------------------------------------------------------------
-8: depois de exibir o resultado, exibir a próxima pergunta aleatória,
-    para que o jogo nunca termine.
-*/
-
-// responsavel por pegar a entrada do navegador .
-// retorna valor para uma variavel
-
-
-
-
-
-
-/*
-----------------------------------------------------------------------------
-9: Tenha cuidado: depois da tarefa 8, o jogo literalmente nunca termina.
-  Então incluide a opção de sair do jogo se o usuário escrever 'exit'
-  ao invés da resposta. Neste caso, não chame a função da tarefa 8.
-*/
-
-
-
-
-/*
-----------------------------------------------------------------------------
-10: acompanhe a pontuação do usuário para tornar o jogo mais divertido!
-  então cada vez que uma resposta estiver correta, adicione 1 ponto à
-  partitura (dica: eu vou usar poder das closures para isso, mas você não
-  precisa, apenas faça isso com as ferramentas que você se sente mais
-  confortável neste momento ).
-*/
-
-/*----------------------------------------------------------------------------
-  11 : Exiba a pontuação no console use ainda outro método para esse
-*/
