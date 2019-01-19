@@ -7,7 +7,5 @@ function getWeather (woeid) {
         .then( data =>{
             console.log(data)
         })
-
 }
-
 getWeather(44418);
