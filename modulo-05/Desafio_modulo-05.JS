@@ -71,31 +71,23 @@ especial para fazer exatamente isso)
 
 /*----------------------------------------------------------------------------
   11 : Exiba a pontuação no console use ainda outro método para esse
-*/
-
-var APP_QUIZ = (function() {
-  let window = window ;
-  let document = document ;
+*/  
   let Pergunta = function(enunciado, alternativa, resp) {
     this.resposta = resp;
     this.enunciado = enunciado;
     this.alternativas = alternativa;
   };
-
   Pergunta.prototype.set_resposta = function(num) {
     return (this.resposta = num);
   };
-
   Pergunta.prototype.get_resposta = function() {
     let result = this.resposta;
     console.log(result);
   };
-
   Pergunta.prototype.exibir_enuciado = function() {
     let enu = this.enunciado;
     return enu;
   };
-
   Pergunta.prototype.exibir_alternativa = function() {
     let msg = "";
     this.alternativas.forEach(function(item, indice) {
@@ -103,33 +95,28 @@ var APP_QUIZ = (function() {
     });
     return msg;
   };
-
   Pergunta.prototype.conferir_resposta = function(num) {
     return this.resposta == num;
   };
 
   //2: Crie algumas perguntas usando o construtor
 
-  
 
   //3: armazene-os todos dentro de uma matriz
   let Questionario = function() {
-    this.lista = [];
+    this.lista = [] ;
   };
-
   Questionario.prototype.sortear_pergunta = function() {
     let lista_perguntas = this.lista,
-      total_perguntas = lista_perguntas.length + 1,
-      num_lista = Math.floor(Math.random() * total_perguntas);
+        total_perguntas = lista_perguntas.length ,
+        num_lista = Math.floor( Math.random() * total_perguntas );
 
     return lista_perguntas[ num_lista ];
   };
-
-  Questionario.prototype.add_pergunta = function(obj_pergunta) {
+  Questionario.prototype.add_pergunta = function( obj_pergunta ) {
     this.lista.push(obj_pergunta);
   };
-
-  Questionario.prototype.remove_pergunta = function(num) {
+  Questionario.prototype.remove_pergunta = function( num ) {
     let novoLista = this.lista.filter(function(e, indice) {
       return indice != num;
     });
@@ -156,58 +143,72 @@ var APP_QUIZ = (function() {
         return number_round ;
     }
   };
-  
   Board_game.prototype.proximo_round = function () {
     this.incremento_round()
   };
-  
   Board_game.prototype.update_board = function ( id_score, id_round, id_player ) {
     let primeiro_acesso = true ;
     document.querySelector( id_score ).textContent = this.get_score() ;
     document.querySelector( id_round ).textContent = this.get_round() ;
     if(primeiro_acesso) document.querySelector( id_player ).textContent = this.nome_jogador ;
   };
-  
-  Board_game.prototype.fim_jogo = function ( value ) {
+  Board_game.prototype.fim_jogo = function ( ) {
     this.score = 0 ;
     this.round = 0 ;
     this.nome_jogador = '' ;
   };
-  
   Board_game.prototype.add_score = function () {
     this.incremento_score() ;
   } ;
 
-  return {
-    Pergunta: Pergunta ,
-    Questionario: Questionario ,
-    Board : Board_game ,
-  };
-})( window, document);
 
 
 
-function main(){
-  
-  let broard = new APP_QUIZ.Board();
-  let questionario = new APP_QUIZ.Questionario();
-  
-  let p1 = new APP_QUIZ.Pergunta("Quanto e 5 * 5 ?", [10, 21, 25], 2); // correto
-  let p2 = new APP_QUIZ.Pergunta("Java e igual a javascript ?", ["sim", "nao"], 1);
-  let p3 = new APP_QUIZ.Pergunta("Brasil se localiza em que continente", ["asia", 
-    "europa", "america", "africa", "america do sul"], 4);
+let APP = ( function () {
+
+  let questionario = new Questionario();
+  let board = new Board_game('fernando');
+
+  let p1 = new Pergunta("Quanto e 5 * 5 ?", [10, 21, 25], 2); // correto
+  let p2 = new Pergunta("Java e igual a javascript ?", ["sim", "nao"], 1);
+  let p3 = new Pergunta("Brasil se localiza em que continente", ["asia", "europa", "america", "africa", "america do sul"], 4);
+  let p4 = new Pergunta("Raiz quadrada de 16" , [2 , 5, 4 ,9], 2)
 
   questionario.add_pergunta( p1 );
   questionario.add_pergunta( p2 );
   questionario.add_pergunta( p3 );
+  questionario.add_pergunta( p4 );
+
   
+  function init (){
+    let resposta = true ;
 
-  broard.update_board('#js_score' , '#js_round', null )
-  console.log( questionario.sortear_pergunta() );
-  
+    while( resposta ){
+      board.proximo_round();
+      board.update_board('#js_score' , '#js_round', '#js_jogador' );
+      
+      let pergunta = questionario.sortear_pergunta();
+      document.querySelector('#js_enunciado').textContent = pergunta.exibir_enuciado();
+      document.querySelector('#js_alternativas').textContent = pergunta.exibir_alternativa();
 
+      resposta = prompt('Para finalizar digite exit')
+      if( pergunta.conferir_resposta( resposta ) ){
+        board.incremento_score()
+      }
+      if(resposta == "exit") {
+        alert("Até a proxima!");
+        board.fim_jogo();
+        break 
+      }
 
+    } 
+  }
+
+  return {
+    init : init
+  }
 }
+)(window, document)
 
-main();
 
+APP.init();
